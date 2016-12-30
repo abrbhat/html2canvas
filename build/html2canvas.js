@@ -1,6 +1,6 @@
 /*
   html2canvas 0.4.1 <http://html2canvas.hertzen.com>
-  Copyright (c) 2013 Niklas von Hertzen
+  Copyright (c) 2016 Niklas von Hertzen
 
   Released under MIT License
 */
@@ -2793,6 +2793,10 @@ _html2canvas.Renderer.Canvas = function(options) {
           case "drawImage":
             if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {
               if (!options.taintTest || (options.taintTest && safeImage(item))) {
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowColor = 'rgba(0,0,0,0.75)';
+                ctx.shadowBlur = 3;
                 ctx.drawImage.apply( ctx, item['arguments'] );
               }
             }
@@ -2865,4 +2869,5 @@ _html2canvas.Renderer.Canvas = function(options) {
     return canvas;
   };
 };
+
 })(window,document);

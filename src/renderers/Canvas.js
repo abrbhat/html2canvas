@@ -54,6 +54,10 @@ _html2canvas.Renderer.Canvas = function(options) {
           case "drawImage":
             if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {
               if (!options.taintTest || (options.taintTest && safeImage(item))) {
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowColor = 'rgba(0,0,0,0.75)';
+                ctx.shadowBlur = 3;
                 ctx.drawImage.apply( ctx, item['arguments'] );
               }
             }
